@@ -21,7 +21,7 @@ body {
 
 main {
     background: rgba(0,0,0,0.9);
-    margin: 2rem;
+    margin: 2rem 0 0 0;
     min-width: 20em;
     justify-content: center;
     height: 90%;
@@ -57,8 +57,10 @@ button {
 }
 
 button:hover {
-    transform: scale(1.2);
     margin: 0 .5rem;
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
 }
 
 #save-el {
