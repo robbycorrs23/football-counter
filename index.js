@@ -2,11 +2,15 @@ const saveEl = document.getElementById("save-el")
 const countEl = document.getElementById("count-el")
 const saveBtn = document.getElementById("save-btn")
 const deleteBtn = document.getElementById("delete-btn")
-const currentDate = new Date();
-const currentTime = `${currentDate.getMonth()+1}.${currentDate.getDate()}`
+const d = new Date();
+const currentDate = `${monthNames[d.getMonth()+1]}.${d.getDate()}`
 
 let count = 0
 let entries = [];
+
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
 const storedItems = JSON.parse(localStorage.getItem("entries"))
 if (storedItems) {
@@ -34,7 +38,7 @@ function decrement() {
 }
 
 function render() {
-    entries.unshift({counter: count, timeStamp: currentTime})
+    entries.unshift({counter: count, timeStamp: currentDate})
 }
 
 function addToEntries () {
