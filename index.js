@@ -58,7 +58,7 @@ function save() {
 deleteBtn.addEventListener("dblclick", deleteAll)
 
 function deleteAll() {
-    saveEl.textContent = `Previous: `
+    saveEl.textContent = ""
     count = 0
     entries = []
     localStorage.clear();
