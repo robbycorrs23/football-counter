@@ -3,7 +3,7 @@ const countEl = document.getElementById("count-el")
 const saveBtn = document.getElementById("save-btn")
 const deleteBtn = document.getElementById("delete-btn")
 const currentDate = new Date();
-const currentTime = `${currentDate.getMonth()}.${currentDate.getDate()}`
+const currentTime = `${currentDate.getMonth()+1}.${currentDate.getDate()}`
 
 let count = 0
 let entries = [];
