@@ -4,20 +4,29 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Football Counter</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com"> 
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-        <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link rel="stylesheet" href="index.css">
     </head>
     <body>
         <main>
-            <h1>Points:</h1>
-            <h2 id="count-el">0</h2>
-            <button id="touchdown-btn" onclick="touchdown()">TD</button>
-            <button id="field-goal-btn" onclick="fieldGoal()">FG</button>
-            <button id="decrement-btn" onclick="decrement()">➖</button>
-            <button id="save-btn">💾</button>
-            <button id="delete-btn">❌</button>
+            <button class="button-top" id="turn-btn">SWITCH</button>
+            <button class="button-top" id="save-btn">SAVE</button>
+            <button class="button-top" id="delete-btn">DELETE</button>
+            <div class="team-container">
+                <div class="blink scores-home">
+                    <h1>Home</h1>
+                    <h2 id="home-count">0</h2>
+                </div>
+                <div class="scores-away">
+                    <h1>Away</h1>
+                    <h2 id="away-count">0</h2>
+                </div>
+            </div>
+            
+            <button class="button-bottom" id="touchdown-btn" onclick="touchdown()">TD</button>
+            <button class="button-bottom" id="field-goal-btn" onclick="fieldGoal()">FG</button>
+            <button class="button-bottom" id="decrement-btn" onclick="decrement()">➖</button>
+            <hr />
             <h2 id="scores-title">Previous Scores</h2>
             <ul id="save-el"></ul>
         </main>
