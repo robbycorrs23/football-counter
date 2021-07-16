@@ -1,12 +1,16 @@
 const saveEl = document.getElementById("save-el")
-const countEl = document.getElementById("count-el")
+const homeCountEl = document.getElementById("home-count")
+const awayCountEl = document.getElementById("away-count")
+const turnBtn = document.getElementById("turn-btn")
 const saveBtn = document.getElementById("save-btn")
 const deleteBtn = document.getElementById("delete-btn")
 const dateGrab = new Date();
 let month = dateGrab.getMonth() + 1
 
-let count = 0;
+let homeCount = 0;
+let awayCount = 0;
 let entries = [];
+let homeTeamTurn = true;
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
     "July", "Aug", "Sept", "Oct", "Nov", "Dec"
@@ -19,33 +23,49 @@ if (storedItems) {
 }
 
 function touchdown() {
-    count += 7
-    countEl.textContent = count
+    if (homeTeamTurn) {
+        homeCount += 7
+    } else if (!homeTeamTurn) {
+        awayCount += 7
+    }
+    addScore()
 }
 
 function fieldGoal() {
-    count += 3
-    countEl.textContent = count
+    if (homeTeamTurn) {
+        homeCount += 3
+    } else if (!homeTeamTurn) {
+        awayCount += 3
+    }
+    addScore()
+}
+
+function addScore () {
+    if (homeTeamTurn) {
+        homeCountEl.textContent = homeCount
+    } else if (!homeTeamTurn) {
+        awayCountEl.textContent = awayCount
+    }
 }
 
 function decrement() {
-    if (count <= 0) {
+    if (homeCount <= 0 ) {
         return
     } else {
-        count -= 1
+        homeCount -= 1
     }
     countEl.textContent = count
 }
 
 function render() {
-    entries.unshift({ counter: count, timeStamp: currentDate })
+    entries.unshift({ home: homeCount, away: awayCount, timeStamp: currentDate })
 }
 
 function addToEntries() {
     let listItems = ""
     for (let i = 0; i < entries.length; i++) {
         listItems += `
-    <li id="list-item">${entries[i].counter} <span>${entries[i].timeStamp}</span>
+    <li id="list-item">H:${entries[i].home} A:${entries[i].away} <span>${entries[i].timeStamp}</span>
     </li>`
     }
     saveEl.innerHTML = listItems
@@ -55,17 +75,26 @@ function save() {
     render();
     addToEntries();
     localStorage.setItem("entries", JSON.stringify(entries))
-    countEl.textContent = 0
-    count = 0
+    homeCountEl.textContent = 0
+    awayCountEl.textContent = 0
+    homeCount = 0
+    awayCount = 0
 }
 
 deleteBtn.addEventListener("dblclick", deleteAll)
 
 function deleteAll() {
     saveEl.textContent = ""
-    count = 0
+    homeCount = 0
+    awayCount = 0
     entries = []
     localStorage.clear();
+}
+
+turnBtn.addEventListener("click", switchTeams)
+
+function switchTeams () {
+    homeTeamTurn = !homeTeamTurn
 }
 
 saveBtn.addEventListener('click', save)
