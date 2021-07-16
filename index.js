@@ -49,12 +49,20 @@ function addScore () {
 }
 
 function decrement() {
-    if (homeCount <= 0 ) {
-        return
-    } else {
-        homeCount -= 1
+    if (homeTeamTurn) {
+        if (homeCount <= 0 ) {
+            return
+        } else {
+            homeCount -= 1
+        }
+    } else if (!homeTeamTurn) {
+        if (awayCount <= 0 ) {
+            return
+        } else {
+            awayCount -= 1
+        }
     }
-    countEl.textContent = count
+    addScore()
 }
 
 function render() {
